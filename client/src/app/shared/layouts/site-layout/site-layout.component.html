@@ -1,0 +1,14 @@
+<nav>
+    <div class="nav-wrapper grey darken-1">
+        <a routerLink="/addContext" class="brand-logo">Comments</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li routerLinkActive="active">
+                <a routerLink = '/logout' (click)="logout()">LogOut</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="auth-block">
+    <router-outlet></router-outlet>
+</div>

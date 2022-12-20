@@ -1,0 +1,31 @@
+<form 
+    class="card"
+    [formGroup] = "form"
+    (ngSubmit)="onSubmit()">
+    <div class="card-content">
+        <span class="card-title">Add Comment</span>
+        <div class="input-field">
+            <input 
+            formControlName = "text"
+            id="text" 
+            type="text"
+            [ngClass]="{'invalid':form.get('text')!.invalid && form.get('text')!.touched}"
+            >
+            
+            <label for="text">Comment:</label>
+            <span class="error-text red-text"
+            *ngIf="form.get('text')!.invalid && form.get('text')!.touched">
+            <span *ngIf="form.get('text')!.errors?.['required']">Field should not be Empty</span>
+        </span>
+        </div>
+    </div>
+    <div class="card-action">
+        <button 
+        type="submit"
+        class="modal-action btn waves-effect"
+        [disabled]="form.invalid || form.disabled"
+        >
+        Add Comment
+    </button>
+    </div>
+</form>
