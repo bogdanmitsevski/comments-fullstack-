@@ -8,7 +8,7 @@ const Users = sequelize.define('users', {
     password: {type: DataTypes.STRING, allowNull: false}
 });
 
-const Comment = sequelize.define('comment',{
+const Comment = sequelize.define('comment', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     parent: {type: DataTypes.INTEGER, allowNull: true},
     related: {type: DataTypes.INTEGER, allowNull: true},
