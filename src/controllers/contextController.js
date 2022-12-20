@@ -1,20 +1,33 @@
-const {Context} = require('../models/models');
+const {Comment} = require('../models/models');
 const path = require('path');
+const authMiddleware = require('../middleware/authMiddleware');
 class ContextController {
-    async addContext(req, res) {
+
+    async getComments (req, res) {
         try {
-            const {userName, email, text} = req.body;
-            //const {files} = req.body.file;
-            //files.mv(path.resolve(__dirname, '..', 'uploads'));
-            const newContext = await Context.create({
-                userName: userName,
-                email: email,
+            const allComments = await Comment.findAll();
+            res.json(allComments);
+        }
+        catch(e) {
+            console.log(e);
+        }
+    }
+
+    async createComment (req, res) {
+        try {
+            const data = authMiddleware.returnID(req);
+            
+            const newComment = await Comment.create({
+                parent: req.body.parent,
+                related: req.body.related,
                 file: req.file ? req.file.path : '',
-                text: text
+                text: req.body.text,
+                userId: data.id
             })
 
-            await newContext.save();
-            res.status(201).json(newContext);
+
+            await newComment.save();
+            res.status(201).json(newComment);
         }
         catch(e) {
             console.log(e);
