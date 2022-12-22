@@ -20,12 +20,31 @@
         </div>
     </div>
     <div class="card-action">
-        <button 
+        <input type="file"
+               class="dn"
+               #input
+               (change)="onFileUpload($event)"
+        >
+    <button (click)="triggerClick()" 
+       class="waves-effect waves-light btn-small"
+       [disabled] = "form.disabled"
+       >
+       <i class="material-icons left btn orange lighten-2"></i>File Upload</button>
+    </div>
+    <div>
+        <img
+            class = "responsive-img h200"
+            [src]="filePreview"
+            *ngIf="filePreview"
+        >
+    </div>
+    <div class="card-action">
+        <button
         type="submit"
         class="modal-action btn waves-effect"
         [disabled]="form.invalid || form.disabled"
         >
-        Add Comment
+        Save Comment
     </button>
     </div>
 </form>

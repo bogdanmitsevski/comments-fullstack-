@@ -7,5 +7,6 @@ export interface User {
 export interface Comment {
     parent: number,
     related: number,
+    file: File,
     text: string
 }

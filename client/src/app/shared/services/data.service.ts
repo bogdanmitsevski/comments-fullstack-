@@ -15,8 +15,16 @@ export class CommentService {
 
     }
 
-    addComment (comment:Comment): Observable<Comment> {
-        return this.http.post<Comment>('/api/comments/:id', comment)
+    addComment (comment:Comment, uploadedFile: File,): Observable<Comment> {
+        const fd = new FormData();
+
+        if(uploadedFile) {
+            fd.append('file', uploadedFile)
+        }
+
+        return (this.http.post<Comment>('/api/comments/:id', comment)) && (this.http.post<Comment>('/api/comments/:id', fd))
+
+
     }
 
     getComment (): Observable<Comment> {
